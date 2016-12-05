@@ -10,11 +10,3 @@ function rsc_misc_install() {
   variable_set("pathauto_taxonomy_term_pattern", '');
 
 }
-
-/**
- * Implements hook_uninstall().
- */
-function rsc_misc_uninstall()
-{
-  // TODO: variable_del
-}

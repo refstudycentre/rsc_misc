@@ -2,48 +2,6 @@
 
 
 /**
- * Implements hook_perm().
- */
-function rsc_misc_permission() {
-  $permissions = array();
-
-  //admin
-  $permissions['administer rsc_misc'] = array(
-    'title' => t('Use RSC custom administration module')
-  );
-
-  return $permissions;
-}
-
-
-/**
- * Implements hook_menu().
- */
-function rsc_misc_menu() {
-  
-  //administrative menu
-  $items['admin/config/development/rsc-custom'] = array(
-    'title'            => 'RSC custom administration module',
-    'description'      => t("Custom administration, hacks and settings for RSC's websites."),
-    'page callback'    => 'drupal_get_form',
-    'page arguments'   => array('rsc_misc_settings'),
-    'access arguments' => array('administer rsc_misc'),
-    'weight'           => 30,
-    'file'             => 'rsc_misc.admin.inc'
-  );
-
-  $items['rsc_testpage'] = array(
-    'title'            => 'RSC Test Page',
-    'page callback'    => 'rsc_misc_testpage',
-    'page arguments'   => array(''),
-    'access arguments' => array('administer rsc_misc')
-  );
-
-  return $items;
-}
-
-
-/**
  * Implements hook_menu_alter().
  */
 function rsc_misc_menu_alter(&$items) {
@@ -93,14 +51,6 @@ function rsc_misc_html_head_alter(&$head_elements) {
       'content' => '9IjCIyPLJJ52UIDC00-aG-CiLfQGT4YuJD3XghhSTYY'
     ),
   );
-}
-
-
-/**
- * Callback to run development scripts
- */
-function rsc_misc_testpage() {
-  echo 'testpage';
 }
 
 
