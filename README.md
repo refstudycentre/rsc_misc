@@ -2,8 +2,7 @@
 
 Previously called `rsc_custom_admin`
 
-Custom administration, hacks and settings for RSC's library sites.
-Badly named for historical reasons. No good reason to rename it now.
+Miscellaneous hacks, settings, Drupal mods, etc. common to most RSC Drupal sites.
 
 What it does:
 - Disables the default path aliases for nodes and taxonomy terms
