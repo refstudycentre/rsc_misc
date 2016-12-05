@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function rsc_custom_admin_install() {
+
+  // Disable the default path aliases for nodes and taxonomy terms
+  variable_set("pathauto_node_pattern", '');
+  variable_set("pathauto_taxonomy_term_pattern", '');
+
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function rsc_custom_admin_uninstall()
+{
+  // TODO: variable_del
+}
