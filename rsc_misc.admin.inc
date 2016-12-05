@@ -2,9 +2,9 @@
 
 
 /**
- * Form builder for the rsc_custom_admin settings form
+ * Form builder for the rsc_misc settings form
  */
-function rsc_custom_admin_settings() {
+function rsc_misc_settings() {
   $form = array();
 
   $form['empty'] = array(

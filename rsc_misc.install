@@ -3,7 +3,7 @@
 /**
  * Implements hook_install().
  */
-function rsc_custom_admin_install() {
+function rsc_misc_install() {
 
   // Disable the default path aliases for nodes and taxonomy terms
   variable_set("pathauto_node_pattern", '');
@@ -14,7 +14,7 @@ function rsc_custom_admin_install() {
 /**
  * Implements hook_uninstall().
  */
-function rsc_custom_admin_uninstall()
+function rsc_misc_uninstall()
 {
   // TODO: variable_del
 }

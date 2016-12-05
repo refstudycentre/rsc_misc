@@ -4,11 +4,11 @@
 /**
  * Implements hook_perm().
  */
-function rsc_custom_admin_permission() {
+function rsc_misc_permission() {
   $permissions = array();
 
   //admin
-  $permissions['administer rsc_custom_admin'] = array(
+  $permissions['administer rsc_misc'] = array(
     'title' => t('Use RSC custom administration module')
   );
 
@@ -19,24 +19,24 @@ function rsc_custom_admin_permission() {
 /**
  * Implements hook_menu().
  */
-function rsc_custom_admin_menu() {
+function rsc_misc_menu() {
   
   //administrative menu
   $items['admin/config/development/rsc-custom'] = array(
     'title'            => 'RSC custom administration module',
     'description'      => t("Custom administration, hacks and settings for RSC's websites."),
     'page callback'    => 'drupal_get_form',
-    'page arguments'   => array('rsc_custom_admin_settings'),
-    'access arguments' => array('administer rsc_custom_admin'),
+    'page arguments'   => array('rsc_misc_settings'),
+    'access arguments' => array('administer rsc_misc'),
     'weight'           => 30,
-    'file'             => 'rsc_custom_admin.admin.inc'
+    'file'             => 'rsc_misc.admin.inc'
   );
 
   $items['rsc_testpage'] = array(
     'title'            => 'RSC Test Page',
-    'page callback'    => 'rsc_custom_admin_testpage',
+    'page callback'    => 'rsc_misc_testpage',
     'page arguments'   => array(''),
-    'access arguments' => array('administer rsc_custom_admin')
+    'access arguments' => array('administer rsc_misc')
   );
 
   return $items;
@@ -46,7 +46,7 @@ function rsc_custom_admin_menu() {
 /**
  * Implements hook_menu_alter().
  */
-function rsc_custom_admin_menu_alter(&$items) {
+function rsc_misc_menu_alter(&$items) {
   
   // disable some unwanted page callbacks:
   $items['node']['page callback'] = 'drupal_not_found';
@@ -58,7 +58,7 @@ function rsc_custom_admin_menu_alter(&$items) {
  * Implements hook_form_FORM_ID_alter
  * Populate search form on search results page
  */
-function rsc_custom_admin_form_search_block_form_alter(&$form, &$form_state, $form_id) {
+function rsc_misc_form_search_block_form_alter(&$form, &$form_state, $form_id) {
   $a0 = arg(0);
   $a2 = arg(2);
   if($a0 == 'search' && $a2){
@@ -70,7 +70,7 @@ function rsc_custom_admin_form_search_block_form_alter(&$form, &$form_state, $fo
 /**
  * Implements hook_menu_breadcrumb_alter(&$active_trail, $item)
  */
-function rsc_custom_admin_menu_breadcrumb_alter(&$active_trail, $item) {
+function rsc_misc_menu_breadcrumb_alter(&$active_trail, $item) {
   // If the breadcrumbs were not set by rsc_library, remove them! (except on admin pages)
   if (!path_is_admin(current_path()) && empty($GLOBALS['rsc_library']['breadcrumb_set'])) {
     $active_trail = array();
@@ -84,8 +84,8 @@ function rsc_custom_admin_menu_breadcrumb_alter(&$active_trail, $item) {
  * Enable the use of Google Apps on the site by adding something like this to the header:
  * <meta name="google-site-verification" content="9IjCIyPLJJ52UIDC00-aG-CiLfQGT4YuJD3XghhSTYY" />
  */
-function rsc_custom_admin_html_head_alter(&$head_elements) {
-  $head_elements['rsc_custom_admin_google_site_verification'] = array(
+function rsc_misc_html_head_alter(&$head_elements) {
+  $head_elements['rsc_misc_google_site_verification'] = array(
     '#type' => 'html_tag',
     '#tag' => 'meta',
     '#attributes' => array(
@@ -99,7 +99,7 @@ function rsc_custom_admin_html_head_alter(&$head_elements) {
 /**
  * Callback to run development scripts
  */
-function rsc_custom_admin_testpage() {
+function rsc_misc_testpage() {
   echo 'testpage';
 }
 
@@ -111,7 +111,7 @@ function rsc_custom_admin_testpage() {
  * TODO: test whether the index is an accurate representation of the pdf contents
  * If not, maybe replace this with Tika and https://drupal.org/project/apachesolr_attachments
  */
-function rsc_custom_admin_node_update_index($node) { // return Array of additional information to be indexed.
+function rsc_misc_node_update_index($node) { // return Array of additional information to be indexed.
   // index the content of pdfs attached to 'field_attachment' of 'library_article's
   if ($node->type=='library_article') {
     // TODO: only do this for files with .pdf extention of pdf mime-type (probably easier to check extention)
@@ -133,7 +133,7 @@ function rsc_custom_admin_node_update_index($node) { // return Array of addition
  * Implements hook_page_alter(&$page).
  * https://api.drupal.org/api/drupal/modules!system!system.api.php/function/hook_page_alter/7
  */
-function rsc_custom_admin_page_alter(&$page) {
+function rsc_misc_page_alter(&$page) {
 
   // fix the weight of the sections menu relative to the cached categories menu
   if (!empty($page['sidebar_first']['menu_menu-sections-1'])) {
